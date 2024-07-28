@@ -1,0 +1,10 @@
+<#import "bloks/template.ftlh" as templ>
+<@templ.page>
+    <#list allBooksAuthor as book>
+        <div>
+            Имя книги: ${book.name}<br>
+            Описание: ${book.description}<br>
+            Жанр: ${book.genre}
+        </div>
+    </#list>
+</@templ.page>
