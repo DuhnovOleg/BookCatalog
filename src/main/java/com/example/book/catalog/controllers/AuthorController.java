@@ -18,16 +18,17 @@ import java.io.IOException;
 public class AuthorController {
     private final AuthorService authorService;
 
-    @GetMapping("/allAuthor")
+    @GetMapping("/allAuthors")
     public String allAuthors(Model model) {
         model.addAttribute("allAuthor", authorService.sortListAuthor());
         return "all-author";
     }
 
-    @GetMapping("/author/search")
-    public String searchAuthor(@RequestParam("searchAuthor") String lastNameAuthor, Model model) throws IOException {
-        model.addAttribute("searchAuthor", authorService.searchAuthor(lastNameAuthor));
-        return "search-author";
+    @GetMapping("/search")
+    public String search(@RequestParam("searchText") String searchText, Model model) {
+        model.addAttribute("searchAuthor", authorService.searchAuthor(searchText));
+        model.addAttribute("searchBook", authorService.searchBook(searchText));
+        return "search";
     }
 
     @GetMapping("/author/info/{id}")

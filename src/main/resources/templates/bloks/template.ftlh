@@ -21,15 +21,15 @@
             <a href="/">
                 <span class="navbar-brand mb-0 h1">Book catalog</span>
             </a>
-            <form action="/author/search">
-                <input type="text" name="searchAuthor"/>
+            <form action="/search">
+                <input type="text" name="searchText"/>
                 <input type="submit" value="Искать"/>
             </form>
             <div class="dropdown text-end">
                 <a href="/">Главная</a>
             </div>
             <div class="dropdown text-end">
-                <a href="/allAuthor">Авторы</a>
+                <a href="/allAuthors">Авторы</a>
             </div>
             <div class="dropdown text-end">
                 <a href="/allBooks">Книги</a>

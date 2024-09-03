@@ -33,9 +33,26 @@ public class AuthorService {
         List<Author> searchListAuthor = new ArrayList<>();
 
         for (Author author : listAuthor) {
-            if (author.getFirstName().contains(nameAuthor) || author.getLastName().contains(nameAuthor))
+            if (!nameAuthor.equals("") &&
+                    (author.getFirstName().toLowerCase().contains(nameAuthor.toLowerCase()) ||
+                            author.getLastName().toLowerCase().contains(nameAuthor.toLowerCase())))
             {
                 searchListAuthor.add(author);
+            }
+        }
+
+        return searchListAuthor;
+    }
+
+    public List<Book> searchBook(String nameBook)
+    {
+        List<Book> listBook = bookRepository.findAll();
+        List<Book> searchListAuthor = new ArrayList<>();
+
+        for (Book book : listBook) {
+            if (!nameBook.equals("") && book.getName().toLowerCase().contains(nameBook.toLowerCase()))
+            {
+                searchListAuthor.add(book);
             }
         }
 

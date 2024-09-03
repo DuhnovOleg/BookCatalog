@@ -43,7 +43,7 @@ public class BookController {
     }
 
     @GetMapping("/book/info/{id}")
-    public String authorInfo(@PathVariable Long id, Model model) {
+    public String bookInfo(@PathVariable Long id, Model model) {
         model.addAttribute("bookInfo", bookService.getBookById(id));
         return "book-info";
     }

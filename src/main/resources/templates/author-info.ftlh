@@ -4,7 +4,7 @@
         <div>
             Имя книги: ${book.name}<br>
             Описание: ${book.description}<br>
-            Жанр: ${book.genre}
+            Жанр: ${book.genre}<br>
         </div>
     </#list>
 </@templ.page>
