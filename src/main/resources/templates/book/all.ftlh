@@ -1,6 +1,6 @@
-<#import "bloks/template.ftlh" as templ>
+<#import "../bloks/template.ftlh" as templ>
 <@templ.page>
-    <#list lastBooks as book>
+    <#list listBooks as book>
         <div>
             <a href="/book/info/${book.id}">Имя книги: ${book.name}</a>
         </div>

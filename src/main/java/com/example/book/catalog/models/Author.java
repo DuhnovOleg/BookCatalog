@@ -10,8 +10,7 @@ import java.util.List;
 @Table(name = "authors")
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@Data
 public class Author implements Comparable<Author>{
     @Id
     @Column(name = "id")

@@ -1,6 +1,6 @@
-<#import "bloks/template.ftlh" as templ>
+<#import "../bloks/template.ftlh" as templ>
 <@templ.page>
-    <#list allAuthor as author>
+    <#list authors as author>
         <div>
             <a href="/author/info/${author.id}" >${author.firstName} ${author.lastName}</a><br>
         </div>

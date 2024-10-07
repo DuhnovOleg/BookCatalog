@@ -1,4 +1,4 @@
-<#import "bloks/template.ftlh" as templ>
+<#import "../bloks/template.ftlh" as templ>
 <@templ.page>
     <h3>Добавить новую книгу</h3>
     <form action="/book/create" method="post" enctype="multipart/form-data">

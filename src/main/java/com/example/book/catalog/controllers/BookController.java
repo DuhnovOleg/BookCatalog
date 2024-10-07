@@ -1,50 +1,51 @@
 package com.example.book.catalog.controllers;
 
+import com.example.book.catalog.dao.BookDAO;
 import com.example.book.catalog.models.Book;
-import com.example.book.catalog.repositories.BookRepository;
-import com.example.book.catalog.services.BookService;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
 @Controller
-@RequiredArgsConstructor
 public class BookController {
-    private final BookService bookService;
+    private final BookDAO bookDAO;
+
+    @Autowired
+    public BookController(BookDAO bookDAO) {
+        this.bookDAO = bookDAO;
+    }
 
     @GetMapping("/")
     public String lastBooks(Model model) {
-        model.addAttribute("lastBooks", bookService.lastAddedBooks());
-        return "last-book";
+        model.addAttribute("books", bookDAO.findAllLastAddedBook());
+        return "book/last";
     }
 
-    @GetMapping("/allBooks")
+    @GetMapping("book/all")
     public String allBooks(Model model) {
-        model.addAttribute("listBooks", bookService.listBooks());
-        return "all-books";
+        model.addAttribute("listBooks", bookDAO.findSortListBook());
+        return "book/all";
     }
 
-    @GetMapping("/addBook")
+    @GetMapping("/book/add")
     public String productInfo(Model model) {
-        return "add-book";
+        return "book/add";
     }
 
     @PostMapping("/book/create")
     public String createProduct(Book book) throws IOException {
-        bookService.saveBook(book);
+        bookDAO.saveBook(book);
         return "redirect:/addBook";
     }
 
     @GetMapping("/book/info/{id}")
     public String bookInfo(@PathVariable Long id, Model model) {
-        model.addAttribute("bookInfo", bookService.getBookById(id));
-        return "book-info";
+        model.addAttribute("bookInfo", bookDAO.findBookById(id));
+        return "book/info";
     }
 }

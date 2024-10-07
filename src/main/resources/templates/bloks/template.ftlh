@@ -29,10 +29,10 @@
                 <a href="/">Главная</a>
             </div>
             <div class="dropdown text-end">
-                <a href="/allAuthors">Авторы</a>
+                <a href="/author/all">Авторы</a>
             </div>
             <div class="dropdown text-end">
-                <a href="/allBooks">Книги</a>
+                <a href="/book/all">Книги</a>
             </div>
             <button class="btn btn-light my-2 my-sm-0" type="button"
                     onclick="window.location.href = '/addBook'">

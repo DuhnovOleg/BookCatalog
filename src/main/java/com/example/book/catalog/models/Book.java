@@ -24,10 +24,10 @@ public class Book implements Comparable<Book>{
     @Column(name = "description")
     private String description;
 
-    @Column(name = "firstNameAuthor")
+    @Column(name = "first_name_author")
     private String firstNameAuthor;
 
-    @Column(name = "lastNameAuthor")
+    @Column(name = "last_name_author")
     private String lastNameAuthor;
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)

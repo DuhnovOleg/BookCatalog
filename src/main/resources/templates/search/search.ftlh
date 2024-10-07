@@ -1,6 +1,6 @@
-<#import "bloks/template.ftlh" as templ>
+<#import "../bloks/template.ftlh" as templ>
 <@templ.page>
-    <#list searchAuthor as author>
+    <#list authors as author>
         <div>
             <a href="/author/info/${author.id}" >Автор: ${author.firstName} ${author.lastName}</a><br>
         </div>
@@ -8,7 +8,7 @@
         <h3>Авторов не найдено</h3>
     </#list>
 
-    <#list searchBook as book>
+    <#list books as book>
         <div>
             <a href="/book/info/${book.id}">Название книги: ${book.name}</a>
         </div>
