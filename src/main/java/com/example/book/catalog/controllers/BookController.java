@@ -8,8 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import java.io.IOException;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class BookController {
@@ -33,14 +32,21 @@ public class BookController {
     }
 
     @GetMapping("/book/add")
-    public String productInfo(Model model) {
+    public String productInfo(@RequestParam(value = "errorNameBook", required = false) String errorBook, Model model) {
+        model.addAttribute("errorNameBook", errorBook != null);
         return "book/add";
     }
 
     @PostMapping("/book/create")
-    public String createProduct(Book book) throws IOException {
-        bookDAO.saveBook(book);
-        return "redirect:/addBook";
+    public String createProduct(Book book) {
+        StringBuilder response = new StringBuilder("redirect:/book/add");
+        boolean checkResult = bookDAO.saveBook(book);
+
+        if (!checkResult) {
+            response.append("?errorNameBook");
+        }
+
+        return response.toString();
     }
 
     @GetMapping("/book/info/{id}")

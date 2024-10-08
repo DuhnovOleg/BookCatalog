@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class AuthorDAO {
@@ -57,13 +58,10 @@ public class AuthorDAO {
     public List<Author> searchAuthor(String nameAuthor)
     {
         List<Author> listBook = findAllAuthor();
-        List<Author> searchListAuthor = new ArrayList<>();
 
-        listBook.stream()
+        return listBook.stream()
                 .filter(author -> author.getFirstName().toLowerCase().contains(nameAuthor.toLowerCase()) ||
                         author.getLastName().toLowerCase().contains(nameAuthor.toLowerCase()))
-                .forEach(searchListAuthor::add);
-
-        return searchListAuthor;
+                .collect(Collectors.toList());
     }
 }

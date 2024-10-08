@@ -6,9 +6,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class BookDAO {
@@ -50,7 +50,9 @@ public class BookDAO {
         }
     }
 
-    public void saveBook(Book book) {
+
+    // <return>true, если книга сохранилась в базе данных, иначе false<return>
+    public boolean saveBook(Book book) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
 
@@ -61,17 +63,22 @@ public class BookDAO {
                     .getSingleResultOrNull();
 
             if (author != null) {
+                if (!checkNameBook(book)) {
+                    return false;
+                }
+
                 book.addAuthorToBook(author);
             } else {
                 Author newAuthor = new Author(book.getFirstNameAuthor(), book.getLastNameAuthor());
 
                 newAuthor.addBookToAuthor(book);
-                session.save(newAuthor);
+                session.persist(newAuthor);
             }
 
-            session.save(book);
-
+            session.persist(book);
             session.getTransaction().commit();
+
+            return true;
         }
     }
 
@@ -87,15 +94,28 @@ public class BookDAO {
         }
     }
 
-    public List<Book> searchBook(String nameBook)
-    {
+    public List<Book> searchBook(String nameBook) {
         List<Book> listBook = findAllBook();
-        List<Book> searchListBook = new ArrayList<>();
 
-        listBook.stream()
+        return listBook.stream()
                 .filter(book -> book.getName().toLowerCase().contains(nameBook.toLowerCase()))
-                .forEach(searchListBook::add);
+                .collect(Collectors.toList());
+    }
 
-        return searchListBook;
+    //
+    // <return>true, если книги нет в бд, иначе false<return>
+    //
+    private boolean checkNameBook(Book book) {
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+
+            Book checkNameBook = session.createQuery("from Book as b where b.name = :name", Book.class)
+                    .setParameter("name", book.getName())
+                    .getSingleResultOrNull();
+
+            session.getTransaction().commit();
+
+            return checkNameBook == null;
+        }
     }
 }

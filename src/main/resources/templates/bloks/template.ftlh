@@ -35,7 +35,7 @@
                 <a href="/book/all">Книги</a>
             </div>
             <button class="btn btn-light my-2 my-sm-0" type="button"
-                    onclick="window.location.href = '/addBook'">
+                    onclick="window.location.href = '/book/add'">
                 Добавить книгу
             </button>
 

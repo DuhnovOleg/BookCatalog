@@ -2,6 +2,9 @@
 <@templ.page>
     <h3>Добавить новую книгу</h3>
     <form action="/book/create" method="post" enctype="multipart/form-data">
+        <#if errorNameBook>
+            <div class="alert alert-danger" role="alert">Такая книга уже добавлена в библиотеку!</div>
+        </#if>
         Название книги: <input type="text" name="name"/><br><br>
         Жанр книги: <input type="text" name="genre"/><br><br>
         Описание книги: <input type="text" name="description"/><br><br>
