@@ -1,7 +1,7 @@
 package com.example.book.catalog.controllers;
 
-import com.example.book.catalog.dao.AuthorDAO;
-import com.example.book.catalog.dao.BookDAO;
+import com.example.book.catalog.services.AuthorService;
+import com.example.book.catalog.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,19 +10,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class SearchController {
-    private final AuthorDAO authorDAO;
-    private final BookDAO bookDAO;
+    private final AuthorService authorService;
+    private final BookService bookService;
 
     @Autowired
-    public SearchController(AuthorDAO authorDAO, BookDAO bookDAO) {
-        this.authorDAO = authorDAO;
-        this.bookDAO = bookDAO;
+    public SearchController(AuthorService authorService, BookService bookService) {
+        this.authorService = authorService;
+        this.bookService = bookService;
     }
 
     @GetMapping("/search")
     public String search(@RequestParam("searchText") String searchText, Model model) {
-        model.addAttribute("authors", authorDAO.searchAuthor(searchText));
-        model.addAttribute("books", bookDAO.searchBook(searchText));
+        model.addAttribute("authors", authorService.searchAuthor(searchText));
+        model.addAttribute("books", bookService.searchBook(searchText));
         return "search/search";
     }
 }

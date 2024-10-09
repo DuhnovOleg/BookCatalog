@@ -5,6 +5,7 @@ create table authors
     last_name  varchar(255),
     primary key (id)
 );
+
 create table books
 (
     author_id         bigint,
@@ -16,5 +17,6 @@ create table books
     name              varchar(255),
     primary key (id)
 );
+
 alter table if exists books
     add constraint fk foreign key (author_id) references authors

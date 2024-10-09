@@ -5,6 +5,9 @@
         <#if errorNameBook>
             <div class="alert alert-danger" role="alert">Такая книга уже добавлена в библиотеку!</div>
         </#if>
+        <#if bookAdded>
+            <div class="alert alert-info" role="alert">Книга успешно добавлена.</div>
+        </#if>
         Название книги: <input type="text" name="name"/><br><br>
         Жанр книги: <input type="text" name="genre"/><br><br>
         Описание книги: <input type="text" name="description"/><br><br>

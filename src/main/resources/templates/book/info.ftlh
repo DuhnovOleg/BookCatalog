@@ -1,7 +1,7 @@
 <#import "../bloks/template.ftlh" as templ>
 <@templ.page>
-    Имя книги: ${bookInfo.name}<br>
-    Автор: ${bookInfo.firstNameAuthor} ${bookInfo.lastNameAuthor}<br>
-    Описание: ${bookInfo.description}<br>
-    Жанр: ${bookInfo.genre}
+    Имя книги: ${book.name}<br>
+    Автор: ${book.firstNameAuthor} ${book.lastNameAuthor}<br>
+    Описание: ${book.description}<br>
+    Жанр: ${book.genre}
 </@templ.page>
