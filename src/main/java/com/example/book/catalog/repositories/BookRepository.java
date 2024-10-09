@@ -1,5 +1,6 @@
 package com.example.book.catalog.repositories;
 
+import com.example.book.catalog.models.Author;
 import com.example.book.catalog.models.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -15,4 +16,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     @Query("from Book b order by b.id desc limit 10")
     List<Book> findLast10ByOrderByCreatedAtDesc();
+
+    @Query("from Book b order by b.name ASC")
+    public List<Book> findAllBooksSortedByNameAsc();
 }

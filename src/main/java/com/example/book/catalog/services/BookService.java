@@ -7,7 +7,6 @@ import com.example.book.catalog.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,9 +30,7 @@ public class BookService {
     }
 
     public List<Book> findSortListBook() {
-        List<Book> listBooks = findAllBook();
-        Collections.sort(listBooks);
-        return listBooks;
+        return bookRepository.findAllBooksSortedByNameAsc();
     }
 
     // <return>true, если книга сохранилась в базе данных, иначе false<return>

@@ -2,7 +2,6 @@ package com.example.book.catalog.models;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.util.ArrayList;
 import java.util.List;
 

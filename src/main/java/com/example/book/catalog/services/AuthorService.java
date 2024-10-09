@@ -6,8 +6,7 @@ import com.example.book.catalog.repositories.AuthorRepository;
 import com.example.book.catalog.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
-import java.util.Collections;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,9 +23,7 @@ public class AuthorService {
 
     public List<Author> findSortListAllAuthor()
     {
-        List<Author> listAuthor = findAllAuthor();
-        Collections.sort(listAuthor);
-        return listAuthor;
+        return authorRepository.findAllAuthorsSortedByFirstNameAsc();
     }
 
     public List<Author> findAllAuthor() {
